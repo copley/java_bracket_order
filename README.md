@@ -17,4 +17,15 @@ place_limit_order creates a limit order (for take profit) and marks it to transm
 Main Function:
 A sample contract is defined and a market order is placed. Once the simulated market order fill is triggered, the listener calculates the child order prices and places the stop loss and limit orders with a slight delay between them.
 
+Review the Warnings:
 
+The warning about 'dependencies.dependency.systemPath' for com.ib:ibapi:jar means that Maven is referencing the TwsApi.jar directly from your project directory. This approach isn’t ideal if others will use your project, because the jar won’t be available in their environment.
+
+To resolve this, you might want to install the jar into your local Maven repository using a command like:
+
+bash
+Copy
+mvn install:install-file -Dfile=lib/TwsApi.jar -DgroupId=com.ib -DartifactId=ibapi -Dversion=1.0 -Dpackaging=jar
+Then update your pom.xml to reference the dependency without the system scope.
+
+Also, note the warning about platform encoding. If you need consistent builds, you can set the encoding in your pom.xml.

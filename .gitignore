@@ -1,6 +1,6 @@
 # Compiled class file
 *.class
-
+cat_files.py
 # Log file
 *.log
 /target/
